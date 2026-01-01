@@ -172,6 +172,7 @@
 
 		<!-- Marquee -->
 		<div class="marquee-container">
+			<!-- svelte-ignore a11y_distracting_elements -->
 			<marquee scrollamount="5">Remember when checking other people's websites was the only way to keep up with their status?</marquee>
 		</div>
 
@@ -315,7 +316,9 @@
 	</div>
 
 	{#if lightboxOpen}
-		<div class="lightbox" onclick={closeLB}>
+		<!-- svelte-ignore a11y_no_static_element_interactions -->
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
+		<div class="lightbox" onclick={closeLB} role="dialog">
 			<button class="lb-close" onclick={closeLB}>[CLOSE]</button>
 			<button class="lb-nav lb-prev" onclick={prevImg}>&lt; PREV</button>
 			<img src={lightboxImages[currentImageIndex]} alt="lightbox" class="lb-img" />
@@ -384,7 +387,6 @@
 	.counter-digit { height: 80px; image-rendering: pixelated; }
 	.footer { text-align: center; font-size: 16px; padding: 30px; border-top: 2px solid #fff; color: #fff; }
 	.hint { color: #fff; font-size: 16px; }
-	.hint.small { font-size: 12px; color: #666; }
 	.more-link { display: block; text-align: center; color: #fff; margin-top: 15px; font-weight: bold; text-decoration: underline; }
 	.more-link:hover { color: #000; background: #fff; }
 	.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; display: flex; align-items: center; justify-content: center; cursor: zoom-out; }

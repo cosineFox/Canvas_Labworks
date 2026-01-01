@@ -39,6 +39,7 @@
 
 			{#if data.news && data.news.length > 0}
 				<div class="alert-box">
+					<!-- svelte-ignore a11y_distracting_elements -->
 					<marquee scrollamount="5"><strong>LOG:</strong> {data.news.join(' +++ ')}</marquee>
 				</div>
 			{/if}
