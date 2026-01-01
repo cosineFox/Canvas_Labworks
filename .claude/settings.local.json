@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(open:*)",
+      "Bash(lsof:*)",
+      "WebFetch(domain:www.art-yakushev.com)"
+    ]
+  }
+}

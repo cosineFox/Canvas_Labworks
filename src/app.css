@@ -1,0 +1,104 @@
+/* Global App Styles */
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* CSS Variables - Two Themes */
+:root {
+  /* Modern theme (Imageworks) */
+  --modern-bg: #0a0a0a;
+  --modern-text: #ffffff;
+  --modern-accent: #888888;
+  --modern-muted: #666666;
+
+  /* Retro Netscape 4.0 theme */
+  --retro-bg: #C0C0C0;
+  --retro-text: #000000;
+  --retro-link: #0000FF;
+  --retro-link-visited: #800080;
+  --retro-bevel-light: #FFFFFF;
+  --retro-bevel-dark: #808080;
+  --retro-window-title: linear-gradient(90deg, #000080, #1084d0);
+  --retro-dos-blue: #000084;
+  --retro-dos-green: #00AA00;
+  --retro-yellow: #FFFF00;
+  --retro-cyan: #00AAAA;
+
+  /* Fonts */
+  --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-serif: 'Times New Roman', Georgia, serif;
+  --font-mono: 'Courier New', Courier, monospace;
+  --font-system: 'MS Sans Serif', 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* Lenis smooth scroll */
+html {
+  scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Base body - no default theme, pages set their own */
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Image defaults */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Remove list styles */
+ul, ol {
+  list-style: none;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+}
+
+/* Buttons */
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+/* Blink animation for retro elements */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Marquee animation */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

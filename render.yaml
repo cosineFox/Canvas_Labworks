@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: canvas-labworks
+    runtime: node
+    buildCommand: npm install && npm run build
+    startCommand: node build
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+    healthCheckPath: /
+    autoDeploy: true
+    headers:
+      - path: /build/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /_app/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
