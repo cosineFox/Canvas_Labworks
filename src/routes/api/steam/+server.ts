@@ -1,8 +1,9 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { STEAM_API_KEY } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 
 export const GET: RequestHandler = async ({ url }) => {
+	const STEAM_API_KEY = env.STEAM_API_KEY;
 	const steamid = url.searchParams.get('steamid');
 
 	if (!steamid) {
