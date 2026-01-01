@@ -1,62 +1,62 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-
-// IMPORTANT: Set STEAM_API_KEY in your environment variables on Render
-// Never commit API keys to source control!
-const STEAM_API_KEY = process.env.STEAM_API_KEY;
-
-if (!STEAM_API_KEY) {
-	console.warn('STEAM_API_KEY environment variable not set');
-}
+import { STEAM_API_KEY } from '$env/static/private';
 
 export const GET: RequestHandler = async ({ url }) => {
 	const steamid = url.searchParams.get('steamid');
 
 	if (!steamid) {
-		return json({ error: 'Missing steamid parameter' }, { status: 400 });
+		return json({ error: 'Missing steamid' }, { status: 400 });
 	}
 
 	if (!STEAM_API_KEY) {
-		return json({
-			error: 'Steam API not configured',
-			games: [],
-			profile: null
-		}, { status: 503 });
+		return json({ error: 'Steam API key missing on server' }, { status: 503 });
 	}
 
 	try {
-		// Fetch recent games
-		const gamesResponse = await fetch(
+		// 1. Fetch Recently Played Games
+		const recentRes = await fetch(
 			`https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v1/?key=${STEAM_API_KEY}&steamid=${steamid}&count=10`
 		);
+		const recentData = await recentRes.json();
+		let games = recentData.response?.games || [];
 
-		let games: any[] = [];
-		if (gamesResponse.ok) {
-			const gamesData = await gamesResponse.json();
-			games = gamesData.response?.games || [];
+		// 2. Fallback: If no recent games, fetch owned games (this usually includes ALL games)
+		if (games.length === 0) {
+			const ownedRes = await fetch(
+				`https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=${STEAM_API_KEY}&steamid=${steamid}&format=json&include_appinfo=1&include_played_free_games=1`
+			);
+			if (ownedRes.ok) {
+				const ownedData = await ownedRes.json();
+				const allGames = ownedData.response?.games || [];
+				
+				// Sort by playtime_forever descending and take top 5
+				games = allGames
+					.filter((g: any) => g.name && g.playtime_forever > 0)
+					.sort((a: any, b: any) => b.playtime_forever - a.playtime_forever)
+					.slice(0, 5);
+			}
 		}
 
-		// Fetch player profile
-		const profileResponse = await fetch(
+		// 3. Fetch Player Profile
+		const profileRes = await fetch(
 			`https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=${STEAM_API_KEY}&steamids=${steamid}`
 		);
-
-		let profile = null;
-		if (profileResponse.ok) {
-			const profileData = await profileResponse.json();
-			profile = profileData.response?.players?.[0] || null;
-		}
+		const profileData = await profileRes.json();
+		const profile = profileData.response?.players?.[0] || null;
 
 		return json({
 			games,
-			profile
+			profile,
+			timestamp: Date.now()
 		}, {
-			headers: {
-				'Cache-Control': 'public, max-age=300' // Cache for 5 minutes
-			}
+			headers: { 
+                'Cache-Control': 'public, max-age=600',
+                'Access-Control-Allow-Origin': '*' 
+            }
 		});
-	} catch (error) {
-		console.error('Steam API error:', error);
-		return json({ error: 'Failed to fetch Steam data', games: [], profile: null }, { status: 500 });
+	} catch (error: any) {
+		console.error('Steam API Exception:', error.message);
+		return json({ error: 'External API failure', games: [] }, { status: 502 });
 	}
 };

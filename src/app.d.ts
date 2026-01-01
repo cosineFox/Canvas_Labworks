@@ -1,5 +1,38 @@
-// See https://svelte.dev/docs/kit/types#app.d.ts
-// for information about these interfaces
+declare module "*.WEBP" {
+    const value: string;
+    export default value;
+}
+
+declare module "*.webp" {
+    const value: string;
+    export default value;
+}
+
+declare module "*.gif" {
+    const value: string;
+    export default value;
+}
+
+declare module "*.svg" {
+    const value: string;
+    export default value;
+}
+
+declare module "*.png" {
+    const value: string;
+    export default value;
+}
+
+declare module "*.jpg" {
+    const value: string;
+    export default value;
+}
+
+declare module "*.jpeg" {
+    const value: string;
+    export default value;
+}
+
 declare global {
 	namespace App {
 		// interface Error {}
