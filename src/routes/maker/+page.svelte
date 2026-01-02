@@ -20,7 +20,7 @@
 		{ slug: 'audio-esp-dac', title: 'Audio ESP DAC', description: 'ESP32-based digital-to-analog converter.', status: 'Planned' },
 		{ slug: 'computer-museum', title: 'Computer Museum', description: 'Documentation of vintage computing hardware.', status: 'Planned' },
 		{ slug: 'yuuna-chan-bot', title: 'Yuuna-chan Bot', description: 'Discord utility bot.', status: 'Planned' },
-		{ slug: 'canvas-labworks', title: 'Canvas Labworks', description: 'This website system.', status: 'Planned' },
+		{ slug: 'canvas-labworks', title: 'Canvas Labworks', description: 'This website system.', status: 'Live' },
 		{ slug: 'dashboard', title: 'Weather Dashboard', description: 'Meteorological data visualization.', status: 'Live', link: '/maker/dashboard' }
 	];
 
@@ -72,7 +72,7 @@
 									{:else}
 										<span class="project-title-static">{p.title}</span>
 									{/if}
-									<span class="separator">-</span> 
+									<span class="separator">-</span>
 									<span class="desc">{p.description}</span>
 									<span class="status" class:live={p.status === 'Live'}>[{p.status.toUpperCase()}]</span>
 								</div>
@@ -95,7 +95,7 @@
 						<ul class="repo-list">
 							{#each repos as repo}
 								<li>
-									<a href={repo.html_url} target="_blank">{repo.name}</a> 
+									<a href={repo.html_url} target="_blank">{repo.name}</a>
 									<span class="repo-desc">{repo.description || 'No description available'}</span>
 									<span class="repo-date">{new Date(repo.updated_at).toLocaleDateString()}</span>
 								</li>
