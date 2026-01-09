@@ -410,7 +410,7 @@
 
 	/* Mobile */
 	@media (max-width: 600px) {
-		.page { padding: 10px 0; }
+		.page { padding: 10px; }
 		.main-container { border-width: 1px; overflow-x: hidden; }
 		.header { padding: 20px 15px; }
 		.title { font-size: 24px; letter-spacing: 2px; word-break: break-word; }
