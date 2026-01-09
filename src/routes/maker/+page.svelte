@@ -114,8 +114,8 @@
 </div>
 
 <style>
-	.page { min-height: 100vh; background: #000; color: #fff; font-family: 'Courier New', monospace; font-size: 18px; display: flex; flex-direction: column; align-items: center; padding: 20px; }
-	.main-container { width: 100%; max-width: 1000px; background: #000; border: 2px solid #fff; }
+	.page { min-height: 100vh; background: #000; color: #fff; font-family: 'Courier New', monospace; font-size: 18px; display: flex; flex-direction: column; align-items: center; padding: 20px; overflow-x: hidden; }
+	.main-container { width: 100%; max-width: 1000px; background: #000; border: 2px solid #fff; box-sizing: border-box; }
 	.header { text-align: center; padding: 30px 20px; border-bottom: 2px solid #fff; }
 	.title { font-size: 42px; margin: 0; letter-spacing: 4px; line-height: 1; font-weight: bold; text-transform: uppercase; }
 	.subtitle { color: #fff; margin-top: 10px; font-size: 18px; font-style: italic; }
@@ -124,7 +124,7 @@
 	.nav-link:last-child { border-right: none; }
 	.nav-link:hover, .nav-link.active { color: #000 !important; background: #fff !important; }
 	.content { display: grid; grid-template-columns: 1fr; gap: 0; background: #000; }
-	.section { background: #000; display: flex; flex-direction: column; margin: 0; outline: 1px solid #fff; }
+	.section { background: #000; display: flex; flex-direction: column; margin: 0; border: 1px solid #fff; }
 	.section-header { padding: 12px 15px; font-weight: bold; border-bottom: 1px solid #fff; font-size: 18px; text-transform: uppercase; letter-spacing: 2px; background: #fff; color: #000; }
 	.section-body { padding: 20px; background: #000; flex: 1; }
 	.project-list { list-style: none; padding: 0; }
