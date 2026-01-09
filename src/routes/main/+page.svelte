@@ -212,7 +212,7 @@
 						{/if}
 
 						<div class="about-text">
-							<p>MY NAME IS <b>CLEMENT</b> AND I AM AN IT STUDENT AT UNI PETRONAS!</p>
+							<p>my name is <b>clement</b>, student of uni petronas.</p>
 							<p>I LIKE <span class="white">LINUX</span>, <span class="white">IOT</span>, AND MAKING THINGS <span class="blink">BLINK!</span></p>
 							<p>LOCATION: MALAYSIA</p>
 						</div>
@@ -349,7 +349,7 @@
 	.about-left { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
 	.avatar-img { width: 180px; height: 180px; border: 2px solid #fff; border-radius: 50%; object-fit: cover; }
 	.filename { font-size: 16px; color: #fff; display: block; margin-top: 5px; }
-	.greeting { font-size: 28px; font-weight: bold; margin: 0; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+	.greeting { font-size: 28px; font-weight: bold; margin: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
 	.greeting-hello { display: flex; align-items: center; gap: 5px; }
 	.greeting-badges { display: inline-flex; align-items: center; gap: 10px; }
 	.info-list { margin: 10px 0 0 0; font-size: 18px; border-top: 1px solid #333; border-bottom: 1px solid #333; padding: 10px 0; display: flex; flex-wrap: wrap; gap: 20px; }
