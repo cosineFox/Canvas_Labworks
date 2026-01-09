@@ -154,7 +154,7 @@
 	.blink { animation: blink 1s step-end infinite; }
 	@keyframes blink { 50% { opacity: 0; } }
 	/* Tablet */
-	@media (max-width: 768px) {
+	@media (max-width: 960px) {
 		.title { font-size: 32px; }
 		.nav-link { font-size: 16px; padding: 15px; }
 		.project-details { flex-direction: column; align-items: flex-start; gap: 5px; }
